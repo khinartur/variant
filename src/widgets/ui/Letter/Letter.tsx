@@ -1,9 +1,10 @@
 import {IconCopy20, IconTrash20} from '~/shared/icons'
+import type {Letter as LetterType} from '~/shared/types'
 import {Button, Text} from '~/shared/ui'
 import styles from './Letter.module.css'
 
 interface LetterProps {
-    letter?: string
+    letter?: LetterType
     preview?: boolean
 }
 
@@ -19,7 +20,7 @@ export const Letter = ({letter, preview}: LetterProps) => {
         <div className={letterClasses}>
             <div className={styles.content}>
                 <Text color="secondary" size="lg">
-                    {letter ||
+                    {letter?.content ||
                         'Your personalized job application will appear here...'}
                 </Text>
                 {preview && <div className={styles.gradient} />}

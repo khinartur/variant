@@ -10,6 +10,10 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Basic: Story = {
-    args: {},
+export const Empty: Story = {
+    render: () => (
+        <div style={{width: '550px', height: '600px'}}>
+            <ApplicationForm />
+        </div>
+    ),
 }

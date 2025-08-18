@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-4);
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.letters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6) var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.banner {
+    margin-top: var(--space-12);
+}

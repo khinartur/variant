@@ -20,13 +20,11 @@ export const ApplicationForm = () => {
                         placeholder="HTML, CSS and doing things in time"
                     />
                 </div>
-                <div className={styles.line}>
-                    <Textarea
-                        label="Additional details"
-                        placeholder="Describe why you are a great fit or paste your bio"
-                        limit={1200}
-                    />
-                </div>
+                <Textarea
+                    label="Additional details"
+                    placeholder="Describe why you are a great fit or paste your bio"
+                    limit={1200}
+                />
             </div>
             <Button size="lg" disabled>
                 Generate Now

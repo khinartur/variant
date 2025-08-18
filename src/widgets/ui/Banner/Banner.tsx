@@ -2,15 +2,23 @@ import {IconPlus24} from '~/shared/icons'
 import {Button, Progress, Text} from '~/shared/ui'
 import styles from './Banner.module.css'
 
-type BannerProps = {
+interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
     progress: number
     total: number
     onCreate: () => void
 }
 
-export const Banner = ({progress, total, onCreate}: BannerProps) => {
+export const Banner = ({
+    className,
+    progress,
+    total,
+    onCreate,
+    ...props
+}: BannerProps) => {
+    const bannerClasses = [styles.banner, className].filter(Boolean).join(' ')
+
     return (
-        <div className={styles.banner}>
+        <div className={bannerClasses} {...props}>
             <div className={styles.bannerContent}>
                 <Text variant="h2">Hit your goal</Text>
                 <Text color="secondary" size="lg">
