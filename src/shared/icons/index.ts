@@ -1,6 +1,8 @@
 export {default as IconCopy20} from './copy-20.svg'
 export {default as IconHome20} from './home-20.svg'
 export {default as IconLoading24} from './loading-24.svg'
+export {default as IconLogo} from './logo.svg'
+export {default as IconLogoType} from './logotype.svg'
 export {default as IconPlus20} from './plus-20.svg'
 export {default as IconPlus24} from './plus-24.svg'
 export {default as IconRepeat24} from './repeat-24.svg'

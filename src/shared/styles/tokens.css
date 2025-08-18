@@ -1,5 +1,6 @@
 :root {
     --color-background-primary: #ffffff;
+    --color-background-contrast: #101828;
     --color-text-primary: #101828;
     --color-text-inverted: #ffffff;
     --color-text-secondary: #667085;
@@ -39,6 +40,8 @@
     --font-size-xl: 1.25rem; /* 20px */
     --font-size-2xl: 1.5rem; /* 24px */
     --font-size-3xl: 1.875rem; /* 30px */
+    --font-size-4xl: 2.25rem; /* 36px */
+    --font-size-5xl: 3rem; /* 48px */
 
     --font-weight-normal: 400;
     --font-weight-medium: 500;
@@ -48,4 +51,8 @@
     --line-height-tight: 1.25;
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.75;
+
+    --shadow-sm: 0 1px 2px 0 rgb(16, 24, 40, 0.05);
+    --shadow-primary: 0 0 0 4px #d3f8df;
+    --shadow-error: 0 0 0 4px #fee4e2;
 }

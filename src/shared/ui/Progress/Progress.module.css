@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    gap: var(--space-1);
+    align-items: center;
+    justify-content: center;
+}
+
+.step {
+    width: 32px;
+    height: 8px;
+    border-radius: 4px;
+    background-color: var(--color-background-contrast);
+    opacity: 24%;
+}
+
+.short {
+    width: 8px;
+}
+
+.filled {
+    opacity: 100%;
+}

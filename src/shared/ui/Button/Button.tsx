@@ -2,7 +2,7 @@ import {IconLoading24} from '~/shared/icons'
 import type {ComponentSize} from '~/shared/styles/types'
 import styles from './Button.module.css'
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost'
+type ButtonVariant = 'primary' | 'outline' | 'ghost'
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     size?: ComponentSize
     variant?: ButtonVariant
