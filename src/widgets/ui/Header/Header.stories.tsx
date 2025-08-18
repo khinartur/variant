@@ -10,10 +10,13 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Basic: Story = {
+export const Default: Story = {
     render: () => (
-        <div style={{width: '800px'}}>
+        <div style={{width: '100vw'}}>
             <Header />
         </div>
     ),
+    parameters: {
+        layout: 'fullscreen',
+    },
 }
