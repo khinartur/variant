@@ -1,0 +1,1 @@
+export const APPLICATIONS_PROGRESS_STEPS = 5

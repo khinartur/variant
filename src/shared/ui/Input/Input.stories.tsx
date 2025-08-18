@@ -10,9 +10,12 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Basic: Story = {
-    args: {
-        placeholder: 'Product manager',
-        error: false,
-    },
+export const Variants: Story = {
+    render: () => (
+        <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+            <Input placeholder="Product manager" />
+            <Input placeholder="Product manager" label="Job title" />
+            <Input placeholder="Product manager" label="Job title" error />
+        </div>
+    ),
 }

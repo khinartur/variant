@@ -31,6 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
         styles[variant],
         loading && styles.loading,
         fullWidth && styles.fullWidth,
+        !children && styles.iconOnly,
         className,
     ]
         .filter(Boolean)

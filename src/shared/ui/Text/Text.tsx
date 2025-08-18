@@ -1,18 +1,21 @@
 import styles from './Text.module.css'
 
-type TextVariant = 'h1' | 'h2' | 'primary' | 'secondary'
+type TextVariant = 'h1' | 'h2' | 'plain'
+type TextColor = 'primary' | 'secondary'
 type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl'
 type TextElement = 'h1' | 'h2' | 'span'
 
 interface TextProps extends React.HTMLAttributes<HTMLElement> {
     variant?: TextVariant
+    color?: TextColor
     size?: TextSize
     as?: TextElement
 }
 
 export const Text: React.FC<TextProps> = ({
     children,
-    variant = 'primary',
+    variant = 'plain',
+    color = 'primary',
     size,
     as,
     className,
@@ -29,6 +32,7 @@ export const Text: React.FC<TextProps> = ({
     const textClasses = [
         styles.text,
         styles[variant],
+        styles[color],
         size && styles[`size-${size}`],
         className,
     ]

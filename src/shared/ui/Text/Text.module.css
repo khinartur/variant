@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     font-family: inherit;
-    color: var(--color-text-primary);
     line-height: var(--line-height-normal);
 }
 
@@ -10,28 +9,26 @@
     font-size: var(--font-size-5xl);
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-tight);
-    color: var(--color-text-primary);
 }
 
 .h2 {
     font-size: var(--font-size-4xl);
     font-weight: var(--font-weight-semibold);
     line-height: var(--line-height-tight);
-    color: var(--color-text-primary);
+}
+
+.plain {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
 }
 
 .primary {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
     color: var(--color-text-primary);
-    line-height: var(--line-height-normal);
 }
 
 .secondary {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-normal);
     color: var(--color-text-secondary);
-    line-height: var(--line-height-normal);
 }
 
 .size-xs {

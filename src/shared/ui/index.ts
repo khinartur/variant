@@ -1,1 +1,6 @@
 export * from './Button'
+export * from './Input'
+export * from './Logo'
+export * from './Progress'
+export * from './Text'
+export * from './Textarea'

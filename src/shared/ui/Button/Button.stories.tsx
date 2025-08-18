@@ -47,6 +47,7 @@ export const Variants: Story = {
                 <Button variant="outline" iconRight={<IconTrash20 />}>
                     Button
                 </Button>
+                <Button variant="outline" iconLeft={<IconTrash20 />} />
                 <Button variant="outline" disabled>
                     Button
                 </Button>
@@ -65,32 +66,13 @@ export const Variants: Story = {
                     Button
                 </Button>
             </div>
+            <div
+                style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
+            >
+                <Button variant="primary" iconLeft={<IconPlus20 />} />
+                <Button variant="outline" iconLeft={<IconHome20 />} />
+                <Button variant="ghost" iconLeft={<IconTrash20 />} />
+            </div>
         </div>
     ),
-}
-
-export const Outline: Story = {
-    args: {
-        variant: 'outline',
-        size: 'lg',
-        children: 'Try Again',
-        iconLeft: <IconRepeat24 />,
-    },
-}
-
-export const OutlineOnlyIcon: Story = {
-    args: {
-        variant: 'outline',
-        size: 'sm',
-        iconLeft: <IconHome20 />,
-    },
-}
-
-export const Ghost: Story = {
-    args: {
-        variant: 'ghost',
-        size: 'xs',
-        children: 'Copy to clipboard',
-        iconRight: <IconCopy20 />,
-    },
 }

@@ -1,3 +1,4 @@
+export {default as IconCheck28} from './check-28.svg'
 export {default as IconCopy20} from './copy-20.svg'
 export {default as IconHome20} from './home-20.svg'
 export {default as IconLoading24} from './loading-24.svg'

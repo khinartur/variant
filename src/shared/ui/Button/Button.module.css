@@ -25,6 +25,7 @@
 
 .xs {
     height: 24px;
+    padding: 0;
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
     gap: var(--space-2);
@@ -55,6 +56,21 @@
     border-radius: var(--radius-md);
     padding: 16px 28px;
     gap: var(--space-3);
+}
+
+.sm.iconOnly {
+    width: 40px;
+    padding: 10px;
+}
+
+.md.iconOnly {
+    width: 44px;
+    padding: 12px;
+}
+
+.lg.iconOnly {
+    width: 60px;
+    padding: 18px;
 }
 
 .primary {

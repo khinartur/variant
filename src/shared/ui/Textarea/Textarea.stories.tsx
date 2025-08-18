@@ -10,8 +10,37 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Basic: Story = {
-    args: {
-        children: 'Generate Now',
-    },
+export const Variants: Story = {
+    render: () => (
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                width: '500px',
+            }}
+        >
+            <Textarea
+                placeholder="Describe why you are a great fit or paste your bio"
+                rows={5}
+            />
+            <Textarea
+                placeholder="Describe why you are a great fit or paste your bio"
+                label="Additional details"
+                rows={5}
+            />
+            <Textarea
+                placeholder="Describe why you are a great fit or paste your bio"
+                label="Additional details"
+                limit={100}
+                rows={5}
+            />
+            <Textarea
+                placeholder="Describe why you are a great fit or paste your bio"
+                label="Additional details"
+                error
+                rows={5}
+            />
+        </div>
+    ),
 }
