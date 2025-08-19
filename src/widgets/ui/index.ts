@@ -1,4 +1,5 @@
 export {ApplicationForm} from './ApplicationForm'
+export {ApplicationsHeader} from './ApplicationsHeader'
 export {Banner} from './Banner'
 export {Header} from './Header'
 export {Letter} from './Letter'
