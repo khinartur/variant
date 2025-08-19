@@ -2,7 +2,16 @@ import styles from './Text.module.css'
 
 type TextVariant = 'h1' | 'h2' | 'plain'
 type TextColor = 'primary' | 'secondary'
-type TextSize = 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl'
+type TextSize =
+    | 'xs'
+    | 'sm'
+    | 'base'
+    | 'lg'
+    | 'xl'
+    | '2xl'
+    | '3xl'
+    | '4xl'
+    | '5xl'
 type TextElement = 'h1' | 'h2' | 'span'
 
 interface TextProps extends React.HTMLAttributes<HTMLElement> {
