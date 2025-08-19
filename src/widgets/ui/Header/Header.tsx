@@ -1,3 +1,6 @@
+import {useCallback} from 'react'
+import {useMatch, useNavigate} from 'react-router-dom'
+import {AppRoutes} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
 import {IconHome20} from '~/shared/icons'
 import {Button, Logo, Progress, Text} from '~/shared/ui'
@@ -5,6 +8,12 @@ import styles from './Header.module.css'
 
 export const Header = () => {
     const isMobile = useIsMobile()
+    const navigate = useNavigate()
+    const isHomePage = useMatch(AppRoutes.applications)
+
+    const onHomeClick = useCallback(() => {
+        navigate(AppRoutes.applications)
+    }, [navigate])
 
     return (
         <div className={styles.header}>
@@ -18,7 +27,14 @@ export const Header = () => {
                     </Text>
                     <Progress short progress={3} />
                 </div>
-                <Button variant="outline" size="sm" iconLeft={<IconHome20 />} />
+                {!isHomePage && (
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        iconLeft={<IconHome20 />}
+                        onClick={onHomeClick}
+                    />
+                )}
             </div>
         </div>
     )
