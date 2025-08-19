@@ -12,10 +12,13 @@ type Story = StoryObj<typeof meta>
 
 export const FormEmpty: Story = {
     render: () => (
-        <div style={{width: '550px', height: '600px'}}>
+        <div style={{width: '100vw', height: '400px'}}>
             <Letter />
         </div>
     ),
+    parameters: {
+        layout: 'fullscreen',
+    },
 }
 
 const mockLetter = {
@@ -26,23 +29,29 @@ const mockLetter = {
 
 export const FormFilled: Story = {
     render: () => (
-        <div style={{width: '550px', height: '600px'}}>
+        <div style={{width: '100vw', height: '400px'}}>
             <Letter letter={mockLetter} />
         </div>
     ),
+    parameters: {
+        layout: 'fullscreen',
+    },
 }
 
 export const PreviewFilled: Story = {
     render: () => (
-        <div style={{width: '550px', height: '600px'}}>
+        <div style={{width: '100vw', height: '400px'}}>
             <Letter preview letter={mockLetter} />
         </div>
     ),
+    parameters: {
+        layout: 'fullscreen',
+    },
 }
 
 export const PreviewFilledShort: Story = {
     render: () => (
-        <div style={{width: '550px', height: '600px'}}>
+        <div style={{width: '100vw', height: '400px'}}>
             <Letter
                 preview
                 letter={{
@@ -52,4 +61,7 @@ export const PreviewFilledShort: Story = {
             />
         </div>
     ),
+    parameters: {
+        layout: 'fullscreen',
+    },
 }

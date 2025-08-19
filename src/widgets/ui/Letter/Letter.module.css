@@ -19,7 +19,7 @@
     position: relative;
     display: flex;
     flex: 1;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .footer {
@@ -43,4 +43,8 @@
         var(--color-background-letter),
         transparent
     );
+}
+
+.overflowHidden {
+    overflow: hidden;
 }
