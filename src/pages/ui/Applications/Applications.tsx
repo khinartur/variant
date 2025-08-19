@@ -23,14 +23,12 @@ export const Applications = ({letters}: ApplicationsProps) => {
                     ))}
                 </div>
             )}
-            {letters.length < APPLICATIONS_PROGRESS_STEPS && (
-                <Banner
-                    className={styles.banner}
-                    progress={letters.length}
-                    total={APPLICATIONS_PROGRESS_STEPS}
-                    onCreate={() => {}}
-                />
-            )}
+            <Banner
+                className={styles.banner}
+                progress={letters.length}
+                total={APPLICATIONS_PROGRESS_STEPS}
+                onCreate={() => {}}
+            />
         </div>
     )
 }
