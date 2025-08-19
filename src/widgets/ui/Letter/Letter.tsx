@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {useIsMobile} from '~/shared/hooks'
 import {IconCopy20, IconTrash20} from '~/shared/icons'
 import type {Letter as LetterType} from '~/shared/types'
@@ -12,26 +13,30 @@ interface LetterProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Letter = ({letter, preview, className, ...props}: LetterProps) => {
     const isMobile = useIsMobile()
 
-    const letterClasses = [styles.letter, preview && styles.preview, className]
-        .filter(Boolean)
-        .join(' ')
-    const contentClasses = [styles.content, preview && styles.overflowHidden]
-        .filter(Boolean)
-        .join(' ')
-    const footerClasses = [styles.footer, preview && styles.footerPreview]
-        .filter(Boolean)
-        .join(' ')
-
     return (
-        <div className={letterClasses} {...props}>
-            <div className={contentClasses}>
+        <div
+            className={clsx(
+                styles.letter,
+                preview && styles.preview,
+                className,
+            )}
+            {...props}
+        >
+            <div
+                className={clsx(
+                    styles.content,
+                    preview && styles.overflowHidden,
+                )}
+            >
                 <Text color="secondary" size="lg">
                     {letter?.content ||
                         'Your personalized job application will appear here...'}
                 </Text>
                 <div className={styles.gradient} />
             </div>
-            <div className={footerClasses}>
+            <div
+                className={clsx(styles.footer, preview && styles.footerPreview)}
+            >
                 {preview && (
                     <Button
                         variant="ghost"

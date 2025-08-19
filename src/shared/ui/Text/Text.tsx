@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import styles from './Text.module.css'
 
 type TextVariant = 'h1' | 'h2' | 'plain'
@@ -38,15 +39,13 @@ export const Text: React.FC<TextProps> = ({
     }
 
     const Element = getElementType()
-    const textClasses = [
+    const textClasses = clsx(
         styles.text,
         styles[variant],
         styles[color],
         size && styles[`size-${size}`],
         className,
-    ]
-        .filter(Boolean)
-        .join(' ')
+    )
 
     return (
         <Element className={textClasses} {...props}>

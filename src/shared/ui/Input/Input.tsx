@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import styles from './Input.module.css'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -12,14 +13,15 @@ export const Input: React.FC<InputProps> = ({
     label,
     ...props
 }) => {
-    const inputClasses = [styles.input, className, error && styles.error]
-        .filter(Boolean)
-        .join(' ')
-
     const inputId = id || `input-${Math.random().toString(36)}`
 
     const inputElement = (
-        <input type="text" className={inputClasses} id={inputId} {...props} />
+        <input
+            type="text"
+            className={clsx(styles.input, className, error && styles.error)}
+            id={inputId}
+            {...props}
+        />
     )
 
     if (label) {

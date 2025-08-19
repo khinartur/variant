@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {APPLICATIONS_PROGRESS_STEPS} from '~/shared/constants'
 import {IconCheck28} from '~/shared/icons'
 import styles from './Progress.module.css'
@@ -23,13 +24,11 @@ export const Progress: React.FC<ProgressProps> = ({
                 <div
                     // biome-ignore lint/suspicious/noArrayIndexKey: no other data for index
                     key={idx}
-                    className={[
+                    className={clsx(
                         styles.step,
                         styles.filled,
                         short && styles.short,
-                    ]
-                        .filter(Boolean)
-                        .join(' ')}
+                    )}
                 />
             ))}
             {new Array(APPLICATIONS_PROGRESS_STEPS - progress)
@@ -38,9 +37,7 @@ export const Progress: React.FC<ProgressProps> = ({
                     <div
                         // biome-ignore lint/suspicious/noArrayIndexKey: no other data for index
                         key={idx}
-                        className={[styles.step, short && styles.short]
-                            .filter(Boolean)
-                            .join(' ')}
+                        className={clsx(styles.step, short && styles.short)}
                     />
                 ))}
         </div>

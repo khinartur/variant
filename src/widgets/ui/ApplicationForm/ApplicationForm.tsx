@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {useIsMobile} from '~/shared/hooks'
 import {Button, Input, Text, Textarea} from '~/shared/ui'
 import styles from './ApplicationForm.module.css'
@@ -10,10 +11,8 @@ export const ApplicationForm = ({
 }: ApplicationFormProps) => {
     const isMobile = useIsMobile()
 
-    const formClasses = [styles.form, className].filter(Boolean).join(' ')
-
     return (
-        <div className={formClasses} {...props}>
+        <div className={clsx(styles.form, className)} {...props}>
             <div className={styles.header}>
                 <Text variant="h1" color="secondary">
                     New application

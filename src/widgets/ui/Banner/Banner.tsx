@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {useIsMobile} from '~/shared/hooks'
 import {IconPlus24} from '~/shared/icons'
 import {Button, Progress, Text} from '~/shared/ui'
@@ -17,14 +18,13 @@ export const Banner = ({
     ...props
 }: BannerProps) => {
     const isMobile = useIsMobile()
-    const bannerClasses = [styles.banner, className].filter(Boolean).join(' ')
 
     if (progress >= total) {
         return null
     }
 
     return (
-        <div className={bannerClasses} {...props}>
+        <div className={clsx(styles.banner, className)} {...props}>
             <div className={styles.bannerContent}>
                 <Text variant="h2" size={isMobile ? '2xl' : '4xl'}>
                     Hit your goal

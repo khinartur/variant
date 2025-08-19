@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import {IconLoading24} from '~/shared/icons'
 import type {ComponentSize} from '~/shared/styles/types'
 import styles from './Button.module.css'
@@ -25,7 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
     children,
     ...props
 }) => {
-    const buttonClasses = [
+    const buttonClasses = clsx(
         styles.button,
         styles[size],
         styles[variant],
@@ -33,9 +34,7 @@ export const Button: React.FC<ButtonProps> = ({
         fullWidth && styles.fullWidth,
         !children && styles.iconOnly,
         className,
-    ]
-        .filter(Boolean)
-        .join(' ')
+    )
 
     return (
         <button className={buttonClasses} disabled={disabled} {...props}>

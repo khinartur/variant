@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import styles from './Textarea.module.css'
 
 interface TextareaProps
@@ -17,10 +18,6 @@ export const Textarea: React.FC<TextareaProps> = ({
     onChange,
     ...props
 }) => {
-    const textareaClasses = [styles.textarea, className, error && styles.error]
-        .filter(Boolean)
-        .join(' ')
-
     const textareaId = id || `textarea-${Math.random().toString(36)}`
 
     const currentLength = typeof value === 'string' ? value.length : 0
@@ -34,7 +31,7 @@ export const Textarea: React.FC<TextareaProps> = ({
 
     const textareaElement = (
         <textarea
-            className={textareaClasses}
+            className={clsx(styles.textarea, className, error && styles.error)}
             id={textareaId}
             value={value}
             onChange={handleChange}
