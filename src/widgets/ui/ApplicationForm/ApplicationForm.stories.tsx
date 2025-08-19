@@ -12,8 +12,11 @@ type Story = StoryObj<typeof meta>
 
 export const Empty: Story = {
     render: () => (
-        <div style={{width: '550px', height: '600px'}}>
+        <div style={{width: '100vw', height: '600px'}}>
             <ApplicationForm />
         </div>
     ),
+    parameters: {
+        layout: 'fullscreen',
+    },
 }

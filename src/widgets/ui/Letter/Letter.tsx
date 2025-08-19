@@ -4,15 +4,15 @@ import type {Letter as LetterType} from '~/shared/types'
 import {Button, Text} from '~/shared/ui'
 import styles from './Letter.module.css'
 
-interface LetterProps {
+interface LetterProps extends React.HTMLAttributes<HTMLDivElement> {
     letter?: LetterType
     preview?: boolean
 }
 
-export const Letter = ({letter, preview}: LetterProps) => {
+export const Letter = ({letter, preview, className, ...props}: LetterProps) => {
     const isMobile = useIsMobile()
 
-    const letterClasses = [styles.letter, preview && styles.preview]
+    const letterClasses = [styles.letter, preview && styles.preview, className]
         .filter(Boolean)
         .join(' ')
     const contentClasses = [styles.content, preview && styles.overflowHidden]
@@ -23,7 +23,7 @@ export const Letter = ({letter, preview}: LetterProps) => {
         .join(' ')
 
     return (
-        <div className={letterClasses}>
+        <div className={letterClasses} {...props}>
             <div className={contentClasses}>
                 <Text color="secondary" size="lg">
                     {letter?.content ||

@@ -1,6 +1,25 @@
 .container {
     display: flex;
+    flex-direction: column;
     flex: 1;
     height: 600px;
     gap: var(--space-8);
+}
+
+.letter {
+    min-height: 400px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .letter {
+        height: 100%;
+    }
+
+    .form {
+        padding: var(--space-3) var(--space-4);
+    }
 }
