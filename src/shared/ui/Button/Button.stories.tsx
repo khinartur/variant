@@ -1,11 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
-import {
-    IconCopy20,
-    IconHome20,
-    IconPlus20,
-    IconRepeat24,
-    IconTrash20,
-} from '~/shared/icons'
+import {IconHome20, IconPlus20, IconTrash20} from '~/shared/icons'
 import {Button} from './Button'
 
 const meta = {

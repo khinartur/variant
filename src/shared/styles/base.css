@@ -1,18 +1,57 @@
-:root {
-    font-family: var(--font-family-primary);
-    line-height: 1.5;
-    font-weight: 400;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-    font-synthesis: none;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    font-size: 16px;
+    overflow-x: hidden;
 }
 
 body {
     margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
+    padding: 0;
+
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+
+    color: var(--color-text-primary);
+    background-color: var(--color-background-primary);
+
     min-height: 100vh;
+    min-width: 320px;
+
+    overflow-x: hidden;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Focus management for accessibility */
+:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
