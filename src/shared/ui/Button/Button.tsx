@@ -38,7 +38,7 @@ export const Button: React.FC<ButtonProps> = ({
 
     return (
         <button className={buttonClasses} disabled={disabled} {...props}>
-            {loading && <IconLoading24 />}
+            {loading && <IconLoading24 className={styles.loadingIcon} />}
             {!loading && (
                 <>
                     {iconLeft}

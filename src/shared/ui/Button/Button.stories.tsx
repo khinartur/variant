@@ -13,7 +13,14 @@ type Story = StoryObj<typeof meta>
 
 export const Variants: Story = {
     render: () => (
-        <div style={{display: 'flex', gap: '16px'}}>
+        <div
+            style={{
+                display: 'flex',
+                flex: '1',
+                justifyContent: 'center',
+                gap: '16px',
+            }}
+        >
             <div
                 style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
             >
@@ -41,7 +48,6 @@ export const Variants: Story = {
                 <Button variant="outline" iconRight={<IconTrash20 />}>
                     Button
                 </Button>
-                <Button variant="outline" iconLeft={<IconTrash20 />} />
                 <Button variant="outline" disabled>
                     Button
                 </Button>
