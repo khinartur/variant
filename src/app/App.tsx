@@ -12,7 +12,7 @@ export const App = () => {
                 <Routes>
                     <Route
                         path={AppRoutes.applications}
-                        element={<Applications letters={[]} />}
+                        element={<Applications />}
                     />
                     <Route
                         path={AppRoutes.newApplication}
