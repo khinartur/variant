@@ -1,4 +1,5 @@
 .letter {
+    position: relative;
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -8,6 +9,7 @@
     background-color: var(--color-background-letter);
     padding: var(--space-6);
     border-radius: var(--radius-xl);
+    overflow: hidden;
 }
 
 .preview {

@@ -10,6 +10,17 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+export const Loading: Story = {
+    render: () => (
+        <div style={{width: '100vw', height: '400px'}}>
+            <Letter loading />
+        </div>
+    ),
+    parameters: {
+        layout: 'fullscreen',
+    },
+}
+
 export const FormEmpty: Story = {
     render: () => (
         <div style={{width: '100vw', height: '400px'}}>
