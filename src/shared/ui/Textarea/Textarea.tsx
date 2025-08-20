@@ -1,8 +1,10 @@
 import clsx from 'clsx'
+import {useState} from 'react'
 import styles from './Textarea.module.css'
 
 interface TextareaProps
-    extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+    extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> {
+    defaultValue?: string
     label?: string
     error?: boolean
     limit?: number
@@ -11,27 +13,34 @@ interface TextareaProps
 export const Textarea: React.FC<TextareaProps> = ({
     className,
     id,
+    defaultValue = '',
     label,
     error,
     limit,
-    value,
     onChange,
     ...props
 }) => {
+    const [value, setValue] = useState(defaultValue)
     const textareaId = id || `textarea-${Math.random().toString(36)}`
 
-    const currentLength = typeof value === 'string' ? value.length : 0
+    const currentLength = value.length
+    const isLimitExceeded = limit && currentLength > limit
+    const isError = error || isLimitExceeded
 
     const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        if (limit && e.target.value.length > limit) {
-            return
-        }
+        const newValue = e.target.value
+
+        setValue(newValue)
         onChange?.(e)
     }
 
     const textareaElement = (
         <textarea
-            className={clsx(styles.textarea, className, error && styles.error)}
+            className={clsx(
+                styles.textarea,
+                className,
+                isError && styles.error,
+            )}
             id={textareaId}
             value={value}
             onChange={handleChange}
@@ -40,7 +49,9 @@ export const Textarea: React.FC<TextareaProps> = ({
     )
 
     const counterElement = limit && (
-        <span className={styles.limit}>
+        <span
+            className={clsx(styles.limit, isLimitExceeded && styles.limitError)}
+        >
             {currentLength}/{limit}
         </span>
     )

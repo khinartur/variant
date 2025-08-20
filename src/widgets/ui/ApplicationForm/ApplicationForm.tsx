@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import {useCallback} from 'react'
 import {useForm} from 'react-hook-form'
+import {APPLICATION_FORM_DETAILS_LIMIT} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
 import type {ApplicationFormData} from '~/shared/types'
 import {Button, Input, Text, Textarea} from '~/shared/ui'
@@ -101,14 +102,13 @@ export const ApplicationForm = ({
                 <Textarea
                     label="Additional details"
                     placeholder="Describe why you are a great fit or paste your bio"
-                    limit={1200}
+                    limit={APPLICATION_FORM_DETAILS_LIMIT}
                     error={!!errors.details}
                     {...register('details', {
                         required: true,
                         maxLength: {
-                            value: 1200,
-                            message:
-                                'Additional details cannot exceed 1200 characters',
+                            value: APPLICATION_FORM_DETAILS_LIMIT,
+                            message: `Additional details cannot exceed ${APPLICATION_FORM_DETAILS_LIMIT} characters`,
                         },
                     })}
                 />

@@ -19,6 +19,10 @@
     line-height: var(--line-height-normal);
 }
 
+.limitError {
+    color: var(--color-error);
+}
+
 .textarea {
     appearance: none;
     outline: none;

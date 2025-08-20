@@ -32,7 +32,7 @@ export const Variants: Story = {
             <Textarea
                 placeholder="Describe why you are a great fit or paste your bio"
                 label="Additional details"
-                limit={100}
+                limit={50}
                 rows={5}
             />
             <Textarea
