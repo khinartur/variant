@@ -1,8 +1,9 @@
 import {useCallback} from 'react'
 import {useMatch, useNavigate} from 'react-router-dom'
-import {AppRoutes} from '~/shared/constants'
+import {APPLICATIONS_PROGRESS_STEPS, AppRoutes} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
 import {IconHome} from '~/shared/icons'
+import {useAppStore} from '~/shared/store'
 import {Button, Logo, Progress, Text} from '~/shared/ui'
 import styles from './Header.module.css'
 
@@ -10,6 +11,8 @@ export const Header = () => {
     const isMobile = useIsMobile()
     const navigate = useNavigate()
     const isHomePage = useMatch(AppRoutes.applications)
+    const {letters} = useAppStore()
+    const progress = letters.length
 
     const onHomeClick = useCallback(() => {
         navigate(AppRoutes.applications)
@@ -22,10 +25,10 @@ export const Header = () => {
                 <div className={styles.progress}>
                     <Text color="secondary" size="lg">
                         {isMobile
-                            ? '3/5 generated'
-                            : '3/5 applications generated'}
+                            ? `${progress}/${APPLICATIONS_PROGRESS_STEPS} generated`
+                            : `${progress}/${APPLICATIONS_PROGRESS_STEPS} applications generated`}
                     </Text>
-                    <Progress short progress={3} />
+                    <Progress short progress={progress / 5} />
                 </div>
                 {!isHomePage && (
                     <Button
