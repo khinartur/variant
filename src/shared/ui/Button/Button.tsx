@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import {IconLoading24} from '~/shared/icons'
+import {IconLoading} from '~/shared/icons'
 import type {ComponentSize} from '~/shared/styles/types'
 import styles from './Button.module.css'
 
@@ -38,7 +38,7 @@ export const Button: React.FC<ButtonProps> = ({
 
     return (
         <button className={buttonClasses} disabled={disabled} {...props}>
-            {loading && <IconLoading24 className={styles.loadingIcon} />}
+            {loading && <IconLoading className={styles.loadingIcon} />}
             {!loading && (
                 <>
                     {iconLeft}

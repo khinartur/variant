@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import {APPLICATIONS_PROGRESS_STEPS} from '~/shared/constants'
-import {IconCheck28} from '~/shared/icons'
+import {IconCheck} from '~/shared/icons'
 import styles from './Progress.module.css'
 
 interface ProgressProps {
@@ -15,7 +15,7 @@ export const Progress: React.FC<ProgressProps> = ({
     const progress = Math.min(progressProp, APPLICATIONS_PROGRESS_STEPS)
 
     if (progress >= APPLICATIONS_PROGRESS_STEPS) {
-        return <IconCheck28 />
+        return <IconCheck />
     }
 
     return (

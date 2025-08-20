@@ -2,7 +2,7 @@ import {useCallback} from 'react'
 import {useMatch, useNavigate} from 'react-router-dom'
 import {AppRoutes} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
-import {IconHome20} from '~/shared/icons'
+import {IconHome} from '~/shared/icons'
 import {Button, Logo, Progress, Text} from '~/shared/ui'
 import styles from './Header.module.css'
 
@@ -31,7 +31,7 @@ export const Header = () => {
                     <Button
                         variant="outline"
                         size="sm"
-                        iconLeft={<IconHome20 />}
+                        iconLeft={<IconHome />}
                         onClick={onHomeClick}
                     />
                 )}

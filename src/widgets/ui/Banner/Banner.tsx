@@ -3,7 +3,7 @@ import {useCallback} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {APPLICATIONS_PROGRESS_STEPS, AppRoutes} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
-import {IconPlus24} from '~/shared/icons'
+import {IconPlus} from '~/shared/icons'
 import {useAppStore} from '~/shared/store'
 import {Button, Progress, Text} from '~/shared/ui'
 import styles from './Banner.module.css'
@@ -36,7 +36,7 @@ export const Banner = ({className, ...props}: BannerProps) => {
                 </Text>
                 <Button
                     size={isMobile ? 'md' : 'lg'}
-                    iconLeft={<IconPlus24 />}
+                    iconLeft={<IconPlus width={24} height={24} />}
                     onClick={onCreateClick}
                 >
                     Create New

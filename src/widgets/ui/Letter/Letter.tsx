@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import {useIsMobile} from '~/shared/hooks'
-import {IconCopy20, IconTrash20} from '~/shared/icons'
+import {IconCopy, IconTrash} from '~/shared/icons'
 import type {Letter as LetterType} from '~/shared/types'
 import {Button, Text} from '~/shared/ui'
 import styles from './Letter.module.css'
@@ -38,15 +38,11 @@ export const Letter = ({letter, preview, className, ...props}: LetterProps) => {
                 className={clsx(styles.footer, preview && styles.footerPreview)}
             >
                 {preview && (
-                    <Button
-                        variant="ghost"
-                        size="xs"
-                        iconLeft={<IconTrash20 />}
-                    >
+                    <Button variant="ghost" size="xs" iconLeft={<IconTrash />}>
                         Delete
                     </Button>
                 )}
-                <Button variant="ghost" size="xs" iconRight={<IconCopy20 />}>
+                <Button variant="ghost" size="xs" iconRight={<IconCopy />}>
                     {isMobile ? 'Copy' : 'Copy to clipboard'}
                 </Button>
             </div>

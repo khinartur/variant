@@ -1,5 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
-import {IconHome20, IconPlus20, IconTrash20} from '~/shared/icons'
+import {IconHome, IconPlus, IconTrash} from '~/shared/icons'
 import {Button} from './Button'
 
 const meta = {
@@ -25,13 +25,13 @@ export const Variants: Story = {
                 style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
             >
                 <Button variant="primary">Button</Button>
-                <Button variant="primary" iconLeft={<IconPlus20 />}>
+                <Button variant="primary" iconLeft={<IconPlus />}>
                     Button
                 </Button>
-                <Button variant="primary" iconRight={<IconPlus20 />}>
+                <Button variant="primary" iconRight={<IconPlus />}>
                     Button
                 </Button>
-                <Button variant="primary" loading iconLeft={<IconPlus20 />}>
+                <Button variant="primary" loading iconLeft={<IconPlus />}>
                     Button
                 </Button>
                 <Button variant="primary" disabled>
@@ -42,10 +42,10 @@ export const Variants: Story = {
                 style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
             >
                 <Button variant="outline">Button</Button>
-                <Button variant="outline" iconLeft={<IconTrash20 />}>
+                <Button variant="outline" iconLeft={<IconTrash />}>
                     Button
                 </Button>
-                <Button variant="outline" iconRight={<IconTrash20 />}>
+                <Button variant="outline" iconRight={<IconTrash />}>
                     Button
                 </Button>
                 <Button variant="outline" disabled>
@@ -56,10 +56,10 @@ export const Variants: Story = {
                 style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
             >
                 <Button variant="ghost">Button</Button>
-                <Button variant="ghost" iconLeft={<IconTrash20 />}>
+                <Button variant="ghost" iconLeft={<IconTrash />}>
                     Button
                 </Button>
-                <Button variant="ghost" iconRight={<IconTrash20 />}>
+                <Button variant="ghost" iconRight={<IconTrash />}>
                     Button
                 </Button>
                 <Button variant="ghost" disabled>
@@ -69,9 +69,9 @@ export const Variants: Story = {
             <div
                 style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
             >
-                <Button variant="primary" iconLeft={<IconPlus20 />} />
-                <Button variant="outline" iconLeft={<IconHome20 />} />
-                <Button variant="ghost" iconLeft={<IconTrash20 />} />
+                <Button variant="primary" iconLeft={<IconPlus />} />
+                <Button variant="outline" iconLeft={<IconHome />} />
+                <Button variant="ghost" iconLeft={<IconTrash />} />
             </div>
         </div>
     ),
