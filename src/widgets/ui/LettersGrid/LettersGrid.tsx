@@ -1,17 +1,13 @@
 import clsx from 'clsx'
-import type {Letter as LetterType} from '~/shared/types'
+import {useAppStore} from '~/shared/store'
 import {Letter} from '../Letter'
 import styles from './LettersGrid.module.css'
 
-interface LettersGridProps extends React.HTMLAttributes<HTMLDivElement> {
-    letters: LetterType[]
-}
+interface LettersGridProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const LettersGrid = ({
-    className,
-    letters,
-    ...props
-}: LettersGridProps) => {
+export const LettersGrid = ({className, ...props}: LettersGridProps) => {
+    const {letters} = useAppStore()
+
     if (letters.length === 0) {
         return null
     }

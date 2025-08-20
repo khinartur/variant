@@ -11,9 +11,12 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Empty: Story = {
+    args: {
+        draft: null,
+    },
     render: () => (
         <div style={{width: '100vw', height: '600px'}}>
-            <ApplicationForm />
+            <ApplicationForm draft={null} />
         </div>
     ),
     parameters: {

@@ -1,4 +1,7 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
+import {MemoryRouter} from 'react-router-dom'
+import {AppRoutes} from '~/shared/constants'
+import {useAppStore} from '~/shared/store'
 import {Applications} from './Applications'
 
 const meta = {
@@ -11,14 +14,21 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const NoLetters: Story = {
-    args: {
-        letters: [],
-    },
     render: () => (
         <div style={{width: '1120px'}}>
-            <Applications letters={[]} />
+            <Applications />
         </div>
     ),
+    decorators: [
+        Story => {
+            useAppStore.setState({letters: []})
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
+        },
+    ],
 }
 
 const mockLetters = [
@@ -50,23 +60,37 @@ const mockLetters = [
 ]
 
 export const WithLetters: Story = {
-    args: {
-        letters: mockLetters.slice(0, 3),
-    },
     render: () => (
         <div style={{width: '1120px', height: 'auto'}}>
-            <Applications letters={mockLetters.slice(0, 3)} />
+            <Applications />
         </div>
     ),
+    decorators: [
+        Story => {
+            useAppStore.setState({letters: mockLetters.slice(0, 3)})
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
+        },
+    ],
 }
 
 export const FullProgress: Story = {
-    args: {
-        letters: mockLetters,
-    },
     render: () => (
         <div style={{width: '1120px', height: 'auto'}}>
-            <Applications letters={mockLetters} />
+            <Applications />
         </div>
     ),
+    decorators: [
+        Story => {
+            useAppStore.setState({letters: mockLetters})
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
+        },
+    ],
 }

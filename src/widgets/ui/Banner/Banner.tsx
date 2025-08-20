@@ -1,25 +1,26 @@
 import clsx from 'clsx'
+import {useCallback} from 'react'
+import {useNavigate} from 'react-router-dom'
+import {APPLICATIONS_PROGRESS_STEPS, AppRoutes} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
 import {IconPlus24} from '~/shared/icons'
+import {useAppStore} from '~/shared/store'
 import {Button, Progress, Text} from '~/shared/ui'
 import styles from './Banner.module.css'
 
-interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
-    progress: number
-    total: number
-    onCreate: () => void
-}
+interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Banner = ({
-    className,
-    progress,
-    total,
-    onCreate,
-    ...props
-}: BannerProps) => {
+export const Banner = ({className, ...props}: BannerProps) => {
     const isMobile = useIsMobile()
+    const navigate = useNavigate()
+    const {letters} = useAppStore()
+    const progress = letters.length
 
-    if (progress >= total) {
+    const onCreateClick = useCallback(() => {
+        navigate(AppRoutes.newApplication)
+    }, [navigate])
+
+    if (progress >= APPLICATIONS_PROGRESS_STEPS) {
         return null
     }
 
@@ -36,7 +37,7 @@ export const Banner = ({
                 <Button
                     size={isMobile ? 'md' : 'lg'}
                     iconLeft={<IconPlus24 />}
-                    onClick={onCreate}
+                    onClick={onCreateClick}
                 >
                     Create New
                 </Button>
@@ -44,7 +45,7 @@ export const Banner = ({
             <div className={styles.bannerFooter}>
                 <Progress progress={progress} short={isMobile} />
                 <Text color="secondary" size={isMobile ? 'sm' : 'lg'}>
-                    {progress} out of {total}
+                    {progress} out of {APPLICATIONS_PROGRESS_STEPS}
                 </Text>
             </div>
         </div>

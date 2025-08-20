@@ -1,34 +1,52 @@
 import clsx from 'clsx'
-import {useCallback} from 'react'
+import {useCallback, useEffect} from 'react'
 import {useForm} from 'react-hook-form'
-import {APPLICATION_FORM_DETAILS_LIMIT} from '~/shared/constants'
+import {
+    APPLICATION_FORM_DETAILS_LIMIT,
+    DEFAULT_NEW_APPLICATION_FORM_VALUES,
+} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
+import {useAppStore} from '~/shared/store'
 import type {ApplicationFormData} from '~/shared/types'
 import {Button, Input, Text, Textarea} from '~/shared/ui'
 import styles from './ApplicationForm.module.css'
 
 interface ApplicationFormProps
-    extends React.FormHTMLAttributes<HTMLFormElement> {}
+    extends React.FormHTMLAttributes<HTMLFormElement> {
+    draft: ApplicationFormData | null
+}
 
 export const ApplicationForm = ({
     className,
+    draft,
     ...props
 }: ApplicationFormProps) => {
     const isMobile = useIsMobile()
+    const {updateFormDraft} = useAppStore()
 
     const {
         register,
+        subscribe,
         handleSubmit,
         formState: {errors, isValid},
     } = useForm<ApplicationFormData>({
         mode: 'onChange',
-        defaultValues: {
-            jobTitle: '',
-            company: '',
-            skills: '',
-            details: '',
-        },
+        defaultValues: draft ?? DEFAULT_NEW_APPLICATION_FORM_VALUES,
     })
+
+    useEffect(() => {
+        const unsubscribe = subscribe({
+            formState: {
+                values: true,
+            },
+            callback: ({values}) => {
+                console.log('values', values)
+                updateFormDraft(values)
+            },
+        })
+
+        return () => unsubscribe()
+    }, [subscribe, updateFormDraft])
 
     const onSubmit = useCallback((data: ApplicationFormData) => {
         console.log('Form data:', data)

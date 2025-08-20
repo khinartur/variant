@@ -1,4 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
+import {useAppStore} from '~/shared/store'
 import {LettersGrid} from './LettersGrid'
 
 const meta = {
@@ -39,14 +40,17 @@ const mockLetters = [
 ]
 
 export const Default: Story = {
-    args: {
-        letters: mockLetters,
-    },
     render: () => (
         <div style={{width: '100vw'}}>
-            <LettersGrid letters={mockLetters} />
+            <LettersGrid />
         </div>
     ),
+    decorators: [
+        Story => {
+            useAppStore.setState({letters: mockLetters})
+            return <Story />
+        },
+    ],
     parameters: {
         layout: 'fullscreen',
     },
