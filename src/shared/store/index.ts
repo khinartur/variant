@@ -9,6 +9,7 @@ type AppStoreState = {
 type AppStoreActions = {
     updateFormDraft: (draft: ApplicationFormData) => void
     addLetter: (letter: Letter) => void
+    deleteLetter: (id: Letter['id']) => void
 }
 
 type AppStore = AppStoreState & AppStoreActions
@@ -19,4 +20,8 @@ export const useAppStore = create<AppStore>()(set => ({
     updateFormDraft: (draft: ApplicationFormData) => set({formDraft: draft}),
     addLetter: (letter: Letter) =>
         set(state => ({letters: [...state.letters, letter]})),
+    deleteLetter: (id: Letter['id']) =>
+        set(state => ({
+            letters: state.letters.filter(letter => letter.id !== id),
+        })),
 }))

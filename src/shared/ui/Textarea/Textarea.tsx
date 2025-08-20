@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import {useState} from 'react'
+import {useMemo, useState} from 'react'
 import styles from './Textarea.module.css'
 
 interface TextareaProps
@@ -21,7 +21,10 @@ export const Textarea: React.FC<TextareaProps> = ({
     ...props
 }) => {
     const [value, setValue] = useState(defaultValue)
-    const textareaId = id || `textarea-${Math.random().toString(36)}`
+    const textareaId = useMemo(
+        () => id || `textarea-${Math.random().toString(36)}`,
+        [id],
+    )
 
     const currentLength = value.length
     const isLimitExceeded = limit && currentLength > limit

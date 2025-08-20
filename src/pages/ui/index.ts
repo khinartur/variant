@@ -1,2 +1,2 @@
+export * from './ApplicationPage'
 export * from './Applications'
-export * from './NewApplication'

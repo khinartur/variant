@@ -121,6 +121,10 @@
     transform-origin: center;
 }
 
+.loadingIconInverted path {
+    stroke: var(--color-text-primary);
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

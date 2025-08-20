@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import {Applications, NewApplication} from '~/pages'
+import {ApplicationPage, Applications} from '~/pages'
 import {AppRoutes} from '~/shared/constants'
 import {Header} from '~/widgets'
 import styles from './App.module.css'
@@ -16,7 +16,11 @@ export const App = () => {
                     />
                     <Route
                         path={AppRoutes.newApplication}
-                        element={<NewApplication />}
+                        element={<ApplicationPage />}
+                    />
+                    <Route
+                        path={AppRoutes.application}
+                        element={<ApplicationPage />}
                     />
                 </Routes>
             </main>

@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import {useMemo} from 'react'
 import styles from './Input.module.css'
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -13,7 +14,10 @@ export const Input: React.FC<InputProps> = ({
     label,
     ...props
 }) => {
-    const inputId = id || `input-${Math.random().toString(36)}`
+    const inputId = useMemo(
+        () => id || `input-${Math.random().toString(36)}`,
+        [id],
+    )
 
     const inputElement = (
         <input

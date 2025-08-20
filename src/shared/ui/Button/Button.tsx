@@ -38,7 +38,15 @@ export const Button: React.FC<ButtonProps> = ({
 
     return (
         <button className={buttonClasses} disabled={disabled} {...props}>
-            {loading && <IconLoading className={styles.loadingIcon} />}
+            {loading && (
+                <IconLoading
+                    className={clsx(
+                        styles.loadingIcon,
+                        (variant === 'outline' || variant === 'ghost') &&
+                            styles.loadingIconInverted,
+                    )}
+                />
+            )}
             {!loading && (
                 <>
                     {iconLeft}

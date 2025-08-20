@@ -1,6 +1,7 @@
 export type Letter = {
     id: string
     content: string
+    formData: ApplicationFormData
 }
 
 export type ApplicationFormData = {

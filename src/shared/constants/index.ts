@@ -2,7 +2,8 @@ import type {ApplicationFormData} from '../types'
 
 export const AppRoutes = {
     applications: '/',
-    newApplication: '/new-application',
+    application: '/application/:id',
+    newApplication: '/application/new',
 }
 
 export const APPLICATIONS_PROGRESS_STEPS = 5

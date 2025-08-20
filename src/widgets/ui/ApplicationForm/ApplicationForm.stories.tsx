@@ -12,11 +12,15 @@ type Story = StoryObj<typeof meta>
 
 export const Empty: Story = {
     args: {
-        draft: null,
+        processing: false,
+        onGenerate: () => Promise.resolve(),
     },
     render: () => (
         <div style={{width: '100vw', height: '600px'}}>
-            <ApplicationForm draft={null} />
+            <ApplicationForm
+                processing={false}
+                onGenerate={() => Promise.resolve()}
+            />
         </div>
     ),
     parameters: {

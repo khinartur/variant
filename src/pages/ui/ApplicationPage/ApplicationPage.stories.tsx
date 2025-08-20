@@ -1,11 +1,11 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
-import {NewApplication} from './NewApplication'
+import {ApplicationPage} from './ApplicationPage'
 
 const meta = {
-    title: 'Pages/NewApplication',
-    component: NewApplication,
+    title: 'Pages/ApplicationPage',
+    component: ApplicationPage,
     tags: ['autodocs'],
-} satisfies Meta<typeof NewApplication>
+} satisfies Meta<typeof ApplicationPage>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -13,7 +13,7 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
     render: () => (
         <div style={{width: '100vw'}}>
-            <NewApplication />
+            <ApplicationPage />
         </div>
     ),
     parameters: {

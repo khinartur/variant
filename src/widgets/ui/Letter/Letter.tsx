@@ -1,8 +1,13 @@
 import clsx from 'clsx'
-import {useIsMobile} from '~/shared/hooks'
-import {IconCopy, IconTrash} from '~/shared/icons'
+import {useCallback} from 'react'
+import {useNavigate} from 'react-router-dom'
+import {AppRoutes} from '~/shared/constants'
+import {IconTrash} from '~/shared/icons'
+import {useAppStore} from '~/shared/store'
 import type {Letter as LetterType} from '~/shared/types'
 import {Button, Text} from '~/shared/ui'
+import {buildAppRoutePath} from '~/shared/utils'
+import {CopyToClipboardButton} from '../CopyToClipboardButton'
 import styles from './Letter.module.css'
 import {Loader} from './Loader'
 
@@ -19,15 +24,30 @@ export const Letter = ({
     className,
     ...props
 }: LetterProps) => {
-    const isMobile = useIsMobile()
+    const navigate = useNavigate()
+    const {deleteLetter} = useAppStore()
+
+    const onClick = useCallback(() => {
+        if (preview && letter?.id) {
+            navigate(buildAppRoutePath(AppRoutes.application, {id: letter.id}))
+        }
+    }, [preview, letter?.id, navigate])
+
+    const onDelete = useCallback(() => {
+        if (letter?.id) {
+            deleteLetter(letter.id)
+        }
+    }, [deleteLetter, letter?.id])
 
     return (
         <div
             className={clsx(
                 styles.letter,
                 preview && styles.preview,
+                !letter && styles.empty,
                 className,
             )}
+            onClick={preview ? onClick : undefined}
             {...props}
         >
             {loading ? (
@@ -57,17 +77,14 @@ export const Letter = ({
                                 variant="ghost"
                                 size="xs"
                                 iconLeft={<IconTrash />}
+                                onClick={onDelete}
                             >
                                 Delete
                             </Button>
                         )}
-                        <Button
-                            variant="ghost"
-                            size="xs"
-                            iconRight={<IconCopy />}
-                        >
-                            {isMobile ? 'Copy' : 'Copy to clipboard'}
-                        </Button>
+                        {letter?.content && (
+                            <CopyToClipboardButton content={letter.content} />
+                        )}
                     </div>
                 </>
             )}

@@ -28,7 +28,7 @@ export const Header = () => {
                             ? `${progress}/${APPLICATIONS_PROGRESS_STEPS} generated`
                             : `${progress}/${APPLICATIONS_PROGRESS_STEPS} applications generated`}
                     </Text>
-                    <Progress short progress={progress / 5} />
+                    <Progress short progress={progress} />
                 </div>
                 {!isHomePage && (
                     <Button

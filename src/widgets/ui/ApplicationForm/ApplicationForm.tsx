@@ -1,28 +1,36 @@
 import clsx from 'clsx'
-import {useCallback, useEffect} from 'react'
+import {useEffect} from 'react'
 import {useForm} from 'react-hook-form'
 import {
     APPLICATION_FORM_DETAILS_LIMIT,
     DEFAULT_NEW_APPLICATION_FORM_VALUES,
 } from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
+import {IconRepeat} from '~/shared/icons'
 import {useAppStore} from '~/shared/store'
-import type {ApplicationFormData} from '~/shared/types'
+import type {ApplicationFormData, Letter} from '~/shared/types'
 import {Button, Input, Text, Textarea} from '~/shared/ui'
+import {buildFormTitle} from '~/shared/utils'
 import styles from './ApplicationForm.module.css'
 
 interface ApplicationFormProps
     extends React.FormHTMLAttributes<HTMLFormElement> {
-    draft: ApplicationFormData | null
+    letter?: Letter
+    processing: boolean
+    onGenerate: (data: ApplicationFormData) => Promise<void>
 }
 
 export const ApplicationForm = ({
     className,
-    draft,
+    letter,
+    onGenerate,
+    processing,
     ...props
 }: ApplicationFormProps) => {
     const isMobile = useIsMobile()
-    const {updateFormDraft} = useAppStore()
+    const {formDraft, updateFormDraft} = useAppStore()
+    const preview = !!letter
+    const draft = letter?.formData || formDraft
 
     const {
         register,
@@ -40,7 +48,6 @@ export const ApplicationForm = ({
                 values: true,
             },
             callback: ({values}) => {
-                console.log('values', values)
                 updateFormDraft(values)
             },
         })
@@ -48,21 +55,19 @@ export const ApplicationForm = ({
         return () => unsubscribe()
     }, [subscribe, updateFormDraft])
 
-    const onSubmit = useCallback((data: ApplicationFormData) => {
-        console.log('Form data:', data)
-    }, [])
-
     return (
         <form
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onGenerate)}
             className={clsx(styles.form, className)}
             {...props}
         >
-            <div className={styles.header}>
-                <Text variant="h1" color="secondary">
-                    New application
-                </Text>
-            </div>
+            {preview && draft && (
+                <div className={styles.header}>
+                    <Text variant="h1" className={styles.truncate}>
+                        {buildFormTitle(draft)}
+                    </Text>
+                </div>
+            )}
             <div className={styles.content}>
                 {isMobile ? (
                     <>
@@ -70,6 +75,7 @@ export const ApplicationForm = ({
                             <Input
                                 label="Job title"
                                 placeholder="Product Manager"
+                                disabled={processing}
                                 error={!!errors.jobTitle}
                                 {...register('jobTitle', {
                                     required: true,
@@ -80,6 +86,7 @@ export const ApplicationForm = ({
                             <Input
                                 label="Company"
                                 placeholder="Apple"
+                                disabled={processing}
                                 error={!!errors.company}
                                 {...register('company', {
                                     required: true,
@@ -92,6 +99,7 @@ export const ApplicationForm = ({
                         <Input
                             label="Job title"
                             placeholder="Product Manager"
+                            disabled={processing}
                             error={!!errors.jobTitle}
                             {...register('jobTitle', {
                                 required: true,
@@ -100,6 +108,7 @@ export const ApplicationForm = ({
                         <Input
                             label="Company"
                             placeholder="Apple"
+                            disabled={processing}
                             error={!!errors.company}
                             {...register('company', {
                                 required: true,
@@ -111,6 +120,7 @@ export const ApplicationForm = ({
                     <Input
                         label="I am good at..."
                         placeholder="HTML, CSS and doing things in time"
+                        disabled={processing}
                         error={!!errors.skills}
                         {...register('skills', {
                             required: true,
@@ -121,6 +131,7 @@ export const ApplicationForm = ({
                     label="Additional details"
                     placeholder="Describe why you are a great fit or paste your bio"
                     limit={APPLICATION_FORM_DETAILS_LIMIT}
+                    disabled={processing}
                     error={!!errors.details}
                     {...register('details', {
                         required: true,
@@ -131,13 +142,25 @@ export const ApplicationForm = ({
                     })}
                 />
             </div>
-            <Button
-                type="submit"
-                size={isMobile ? 'md' : 'lg'}
-                disabled={!isValid}
-            >
-                Generate Now
-            </Button>
+            {preview ? (
+                <Button
+                    type="submit"
+                    variant="outline"
+                    size={isMobile ? 'md' : 'lg'}
+                    iconLeft={<IconRepeat />}
+                >
+                    Try Again
+                </Button>
+            ) : (
+                <Button
+                    type="submit"
+                    size={isMobile ? 'md' : 'lg'}
+                    loading={processing}
+                    disabled={!isValid}
+                >
+                    Generate Now
+                </Button>
+            )}
         </form>
     )
 }

@@ -48,6 +48,9 @@ export const Variants: Story = {
                 <Button variant="outline" iconRight={<IconTrash />}>
                     Button
                 </Button>
+                <Button variant="outline" loading iconRight={<IconTrash />}>
+                    Button
+                </Button>
                 <Button variant="outline" disabled>
                     Button
                 </Button>
@@ -60,6 +63,9 @@ export const Variants: Story = {
                     Button
                 </Button>
                 <Button variant="ghost" iconRight={<IconTrash />}>
+                    Button
+                </Button>
+                <Button variant="ghost" loading iconRight={<IconTrash />}>
                     Button
                 </Button>
                 <Button variant="ghost" disabled>
