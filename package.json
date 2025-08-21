@@ -1,6 +1,9 @@
 {
     "name": "variant",
     "version": "1.0.0",
+    "description": "Variant Group Test Assignment",
+    "author": "Arthur Khineltsev",
+    "url": "https://variant.khineltsev.dev",
     "type": "module",
     "scripts": {
         "dev": "vite",
