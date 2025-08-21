@@ -72,6 +72,7 @@ export const Letter = memo(
                                     styles.footer,
                                     preview && styles.footerPreview,
                                 )}
+                                onClick={e => e.stopPropagation()}
                             >
                                 {preview && (
                                     <Button

@@ -13,7 +13,7 @@ export const ApplicationPage = memo(() => {
     const {id} = useParams<{id: string}>()
     const isMobile = useIsMobile()
     const navigate = useNavigate()
-    const {addLetter} = useAppStore()
+    const {addLetter, updateLetter} = useAppStore()
     const existingLetter = useAppStore(state =>
         state.letters.find(letter => letter.id === id),
     )
@@ -42,14 +42,30 @@ export const ApplicationPage = memo(() => {
                 scrollToLetter()
             }
             await new Promise(resolve => setTimeout(resolve, 3000))
-            const newLetter = generateTemplateLetter(data)
-            addLetter(newLetter)
+            const newLetterContent = generateTemplateLetter(data)
+            const newLetter = {
+                id: existingLetter ? existingLetter.id : crypto.randomUUID(),
+                content: newLetterContent,
+                formData: data,
+            }
+            if (existingLetter) {
+                updateLetter(existingLetter.id, newLetter)
+            } else {
+                addLetter(newLetter)
+            }
             navigate(
                 buildAppRoutePath(AppRoutes.application, {id: newLetter.id}),
             )
             setLoading(false)
         },
-        [addLetter, navigate, scrollToLetter, isMobile],
+        [
+            addLetter,
+            updateLetter,
+            navigate,
+            scrollToLetter,
+            existingLetter,
+            isMobile,
+        ],
     )
 
     return (

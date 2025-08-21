@@ -12,7 +12,7 @@ export const Header = memo(() => {
     const navigate = useNavigate()
     const isHomePage = useMatch(AppRoutes.applications)
     const {letters} = useAppStore()
-    const progress = letters.length
+    const progress = Math.min(letters.length, APPLICATIONS_PROGRESS_STEPS)
 
     const onHomeClick = useCallback(() => {
         navigate(AppRoutes.applications)

@@ -1,4 +1,4 @@
-import type {ApplicationFormData, Letter} from '../types'
+import type {ApplicationFormData} from '../types'
 
 export const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
@@ -6,10 +6,10 @@ export const copyToClipboard = (text: string) => {
 
 export const generateTemplateLetter = (
     formData: ApplicationFormData,
-): Letter => {
+): string => {
     const {company, jobTitle, skills, details} = formData
 
-    const content = `Dear ${company} Team,
+    return `Dear ${company} Team,
 
 I am writing to express my interest in the ${jobTitle} position.
 
@@ -21,10 +21,4 @@ I am confident that my skills and enthusiasm would translate into valuable contr
 
 Thank you for considering my application. I eagerly await the opportunity to discuss my qualifications further.
 `
-
-    return {
-        id: crypto.randomUUID(),
-        content,
-        formData,
-    }
 }
