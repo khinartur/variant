@@ -13,7 +13,7 @@
 }
 
 .preview {
-    height: 240px;
+    min-height: 240px;
     max-height: 240px;
     cursor: pointer;
 }
@@ -31,6 +31,7 @@
 }
 
 .footer {
+    position: relative;
     display: flex;
     justify-content: flex-end;
     padding-top: var(--space-2);
@@ -42,7 +43,7 @@
 
 .gradient {
     position: absolute;
-    bottom: 0;
+    top: -40px;
     left: 0;
     width: 100%;
     height: 40px;

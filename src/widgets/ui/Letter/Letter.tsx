@@ -65,7 +65,6 @@ export const Letter = memo(
                                     {letter?.content ||
                                         'Your personalized job application will appear here...'}
                                 </Text>
-                                <div className={styles.gradient} />
                             </div>
                             <div
                                 className={clsx(
@@ -74,6 +73,7 @@ export const Letter = memo(
                                 )}
                                 onClick={e => e.stopPropagation()}
                             >
+                                <div className={styles.gradient} />
                                 {preview && (
                                     <Button
                                         variant="ghost"
