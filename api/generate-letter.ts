@@ -1,3 +1,4 @@
+// Vercel serverless function for OpenAI request
 import OpenAI from 'openai'
 
 const client = new OpenAI({
@@ -18,10 +19,7 @@ export default async function handler(req, res) {
         try {
             const {company, jobTitle, skills, details} = JSON.parse(body)
             if (!company || !jobTitle || !skills || !details) {
-                res.statusCode = 400
-                res.setHeader('Content-Type', 'application/json')
-                res.end(JSON.stringify({error: 'Missing parameters'}))
-                return
+                return res.status(400).json({error: 'Missing parameters'})
             }
 
             const completion = await client.chat.completions.create({
@@ -42,17 +40,11 @@ Omit ending line with applicant name.`,
                 ],
             })
 
-            res.setHeader('Content-Type', 'application/json')
-            res.statusCode = 200
-            res.end(
-                JSON.stringify({
-                    coverLetter: completion.choices[0].message.content,
-                }),
-            )
+            return res
+                .status(200)
+                .json({coverLetter: completion.choices[0].message.content})
         } catch (err) {
-            console.error(err)
-            res.statusCode = 500
-            res.end(JSON.stringify({error: err.message}))
+            return res.status(500).json({error: err.message})
         }
     })
 }
