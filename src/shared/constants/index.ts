@@ -2,7 +2,7 @@ import type {ApplicationFormData} from '../types'
 
 export const AppRoutes = {
     applications: '/',
-    application: '/application/:id?',
+    application: '/application/:id',
     newApplication: '/application/new',
 }
 
