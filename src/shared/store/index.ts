@@ -1,4 +1,5 @@
 import {create} from 'zustand'
+import {subscribeWithSelector} from 'zustand/middleware'
 import type {ApplicationFormData, Letter} from '../types'
 
 type AppStoreState = {
@@ -15,23 +16,31 @@ type AppStoreActions = {
 
 type AppStore = AppStoreState & AppStoreActions
 
-export const useAppStore = create<AppStore>()(set => ({
-    letters: [],
-    formDraft: null,
-    updateFormDraft: (draft: ApplicationFormData) => set({formDraft: draft}),
-    addLetter: (letter: Letter) =>
-        set(state => ({letters: [...state.letters, letter], formDraft: null})),
-    updateLetter: (id: Letter['id'], letter: Letter) =>
-        set(state => {
-            const index = state.letters.findIndex(letter => letter.id === id)
-            if (index !== -1) {
-                state.letters[index] = letter
-                state.formDraft = null
-            }
-            return state
-        }),
-    deleteLetter: (id: Letter['id']) =>
-        set(state => ({
-            letters: state.letters.filter(letter => letter.id !== id),
-        })),
-}))
+export const useAppStore = create<AppStore>()(
+    subscribeWithSelector(set => ({
+        letters: [],
+        formDraft: null,
+        updateFormDraft: (draft: ApplicationFormData) =>
+            set({formDraft: draft}),
+        addLetter: (letter: Letter) =>
+            set(state => ({
+                letters: [...state.letters, letter],
+                formDraft: null,
+            })),
+        updateLetter: (id: Letter['id'], letter: Letter) =>
+            set(state => {
+                const index = state.letters.findIndex(
+                    letter => letter.id === id,
+                )
+                if (index !== -1) {
+                    state.letters[index] = letter
+                    state.formDraft = null
+                }
+                return state
+            }),
+        deleteLetter: (id: Letter['id']) =>
+            set(state => ({
+                letters: state.letters.filter(letter => letter.id !== id),
+            })),
+    })),
+)
