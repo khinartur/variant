@@ -15,11 +15,8 @@ export const Default: Story = {
         content: 'Letter content',
     },
     render: args => (
-        <div style={{width: '100vw'}}>
+        <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
             <CopyToClipboardButton {...args} />
         </div>
     ),
-    parameters: {
-        layout: 'fullscreen',
-    },
 }

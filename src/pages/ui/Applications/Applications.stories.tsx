@@ -18,7 +18,7 @@ type Story = StoryObj<typeof meta>
 
 export const NoLetters: Story = {
     render: () => (
-        <div style={{width: '1120px'}}>
+        <div style={{width: '100%', maxWidth: '1120px', margin: '0 auto'}}>
             <Applications />
         </div>
     ),
@@ -69,7 +69,7 @@ const mockLetters = [
 
 export const WithLetters: Story = {
     render: () => (
-        <div style={{width: '1120px', height: 'auto'}}>
+        <div style={{width: '100%', maxWidth: '1120px', margin: '0 auto'}}>
             <Applications />
         </div>
     ),
@@ -87,7 +87,7 @@ export const WithLetters: Story = {
 
 export const FullProgress: Story = {
     render: () => (
-        <div style={{width: '1120px', height: 'auto'}}>
+        <div style={{width: '100%', maxWidth: '1120px', margin: '0 auto'}}>
             <Applications />
         </div>
     ),

@@ -3,6 +3,7 @@
     flex: 1;
     flex-direction: column;
     gap: var(--space-1-5);
+    width: 100%;
 }
 
 .label {
@@ -43,8 +44,7 @@
     resize: none;
     transition:
         border-color 0.2s ease-in-out,
-        box-shadow 0.2s ease-in-out,
-        background-color 0.2s ease-in-out;
+        box-shadow 0.2s ease-in-out;
 }
 
 .textarea::placeholder {
@@ -56,6 +56,10 @@
     box-shadow: var(--shadow-primary);
 }
 
+.textarea:hover:not(:disabled):not(:focus) {
+    border-color: var(--color-border-hover);
+}
+
 .textarea:disabled {
     cursor: not-allowed;
 }
@@ -63,6 +67,10 @@
 .error {
     border-color: var(--color-error);
     box-shadow: var(--shadow-error);
+}
+
+.error:hover:not(:disabled):not(:focus) {
+    border-color: var(--color-error-stroke);
 }
 
 .error:focus {

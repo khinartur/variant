@@ -1,5 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
-import {DEFAULT_NEW_APPLICATION_FORM_VALUES} from '~/shared/constants'
+import {MemoryRouter} from 'react-router-dom'
+import {
+    AppRoutes,
+    DEFAULT_NEW_APPLICATION_FORM_VALUES,
+} from '~/shared/constants'
 import {Letter} from './Letter'
 
 const meta = {
@@ -13,24 +17,50 @@ type Story = StoryObj<typeof meta>
 
 export const Loading: Story = {
     render: () => (
-        <div style={{width: '100vw', height: '400px'}}>
+        <div
+            style={{
+                width: '100%',
+                maxWidth: '520px',
+                height: '600px',
+                margin: '0 auto',
+            }}
+        >
             <Letter loading />
         </div>
     ),
-    parameters: {
-        layout: 'fullscreen',
-    },
+    decorators: [
+        Story => {
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
+        },
+    ],
 }
 
 export const FormEmpty: Story = {
     render: () => (
-        <div style={{width: '100vw', height: '400px'}}>
+        <div
+            style={{
+                width: '100%',
+                maxWidth: '520px',
+                height: '600px',
+                margin: '0 auto',
+            }}
+        >
             <Letter />
         </div>
     ),
-    parameters: {
-        layout: 'fullscreen',
-    },
+    decorators: [
+        Story => {
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
+        },
+    ],
 }
 
 const mockLetter = {
@@ -42,29 +72,62 @@ const mockLetter = {
 
 export const FormFilled: Story = {
     render: () => (
-        <div style={{width: '100vw', height: '400px'}}>
+        <div
+            style={{
+                width: '100%',
+                maxWidth: '520px',
+                height: '600px',
+                margin: '0 auto',
+            }}
+        >
             <Letter letter={mockLetter} />
         </div>
     ),
-    parameters: {
-        layout: 'fullscreen',
-    },
+    decorators: [
+        Story => {
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
+        },
+    ],
 }
 
 export const PreviewFilled: Story = {
     render: () => (
-        <div style={{width: '100vw', height: '400px'}}>
+        <div
+            style={{
+                width: '100%',
+                maxWidth: '520px',
+                height: '600px',
+                margin: '0 auto',
+            }}
+        >
             <Letter preview letter={mockLetter} />
         </div>
     ),
-    parameters: {
-        layout: 'fullscreen',
-    },
+    decorators: [
+        Story => {
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
+        },
+    ],
 }
 
 export const PreviewFilledShort: Story = {
     render: () => (
-        <div style={{width: '100vw', height: '400px'}}>
+        <div
+            style={{
+                width: '100%',
+                maxWidth: '520px',
+                height: '600px',
+                margin: '0 auto',
+            }}
+        >
             <Letter
                 preview
                 letter={{
@@ -74,7 +137,13 @@ export const PreviewFilledShort: Story = {
             />
         </div>
     ),
-    parameters: {
-        layout: 'fullscreen',
-    },
+    decorators: [
+        Story => {
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
+        },
+    ],
 }

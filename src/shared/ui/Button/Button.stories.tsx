@@ -1,5 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
 import {IconHome, IconPlus, IconTrash} from '~/shared/icons'
+import {Text} from '../Text'
 import {Button} from './Button'
 
 const meta = {
@@ -18,12 +19,15 @@ export const Variants: Story = {
                 display: 'flex',
                 flex: '1',
                 justifyContent: 'center',
-                gap: '16px',
+                gap: '48px',
             }}
         >
             <div
                 style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
             >
+                <Text variant="h1" size="2xl">
+                    Primary
+                </Text>
                 <Button variant="primary">Button</Button>
                 <Button variant="primary" iconLeft={<IconPlus />}>
                     Button
@@ -41,6 +45,9 @@ export const Variants: Story = {
             <div
                 style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
             >
+                <Text variant="h1" size="2xl">
+                    Outline
+                </Text>
                 <Button variant="outline">Button</Button>
                 <Button variant="outline" iconLeft={<IconTrash />}>
                     Button
@@ -58,6 +65,9 @@ export const Variants: Story = {
             <div
                 style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
             >
+                <Text variant="h1" size="2xl">
+                    Ghost
+                </Text>
                 <Button variant="ghost">Button</Button>
                 <Button variant="ghost" iconLeft={<IconTrash />}>
                     Button
@@ -75,6 +85,9 @@ export const Variants: Story = {
             <div
                 style={{display: 'flex', flexDirection: 'column', gap: '16px'}}
             >
+                <Text variant="h1" size="2xl">
+                    Icon Only
+                </Text>
                 <Button variant="primary" iconLeft={<IconPlus />} />
                 <Button variant="outline" iconLeft={<IconHome />} />
                 <Button variant="ghost" iconLeft={<IconTrash />} />

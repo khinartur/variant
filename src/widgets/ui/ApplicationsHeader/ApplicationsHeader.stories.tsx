@@ -1,4 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
+import {MemoryRouter} from 'react-router-dom'
+import {AppRoutes} from '~/shared/constants'
 import {ApplicationsHeader} from './ApplicationsHeader'
 
 const meta = {
@@ -12,11 +14,17 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
     render: () => (
-        <div style={{width: '100vw'}}>
+        <div style={{width: '100%'}}>
             <ApplicationsHeader />
         </div>
     ),
-    parameters: {
-        layout: 'fullscreen',
-    },
+    decorators: [
+        Story => {
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
+        },
+    ],
 }

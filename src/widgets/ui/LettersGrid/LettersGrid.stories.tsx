@@ -1,5 +1,9 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
-import {DEFAULT_NEW_APPLICATION_FORM_VALUES} from '~/shared/constants'
+import {MemoryRouter} from 'react-router-dom'
+import {
+    AppRoutes,
+    DEFAULT_NEW_APPLICATION_FORM_VALUES,
+} from '~/shared/constants'
 import {useAppStore} from '~/shared/store'
 import {LettersGrid} from './LettersGrid'
 
@@ -47,17 +51,18 @@ const mockLetters = [
 
 export const Default: Story = {
     render: () => (
-        <div style={{width: '100vw'}}>
+        <div style={{width: '100%'}}>
             <LettersGrid />
         </div>
     ),
     decorators: [
         Story => {
             useAppStore.setState({letters: mockLetters})
-            return <Story />
+            return (
+                <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                    <Story />
+                </MemoryRouter>
+            )
         },
     ],
-    parameters: {
-        layout: 'fullscreen',
-    },
 }

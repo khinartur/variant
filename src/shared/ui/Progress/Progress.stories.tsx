@@ -15,7 +15,14 @@ export const Variants: Story = {
         progress: 0,
     },
     render: () => (
-        <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
+        <div
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+                alignItems: 'center',
+            }}
+        >
             <Progress progress={0} />
             <Progress progress={3} />
             <Progress progress={0} short />

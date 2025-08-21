@@ -15,15 +15,9 @@ export const Empty: Story = {
         processing: false,
         onGenerate: () => Promise.resolve(),
     },
-    render: () => (
-        <div style={{width: '100vw', height: '600px'}}>
-            <ApplicationForm
-                processing={false}
-                onGenerate={() => Promise.resolve()}
-            />
+    render: args => (
+        <div style={{width: '100%', height: '600px'}}>
+            <ApplicationForm {...args} />
         </div>
     ),
-    parameters: {
-        layout: 'fullscreen',
-    },
 }
