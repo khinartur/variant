@@ -64,7 +64,7 @@ export const ApplicationForm = memo(
                         <div className={styles.header}>
                             <Text
                                 variant="h1"
-                                size={isMobile ? '2xl' : '5xl'}
+                                size={isMobile ? '2xl' : '4xl'}
                                 className={styles.truncate}
                             >
                                 {buildFormTitle(draft)}
