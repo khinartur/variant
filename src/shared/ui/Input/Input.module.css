@@ -39,10 +39,6 @@
     opacity: 1;
 }
 
-.input:hover:not(:disabled):not(:focus) {
-    border-color: var(--color-border);
-}
-
 .input:focus {
     border-color: var(--color-primary-stroke);
     box-shadow: var(--shadow-primary);

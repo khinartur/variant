@@ -51,10 +51,6 @@
     color: var(--color-text-secondary);
 }
 
-.textarea:hover:not(:disabled):not(:focus) {
-    border-color: var(--color-border);
-}
-
 .textarea:focus {
     border-color: var(--color-primary-stroke);
     box-shadow: var(--shadow-primary);
