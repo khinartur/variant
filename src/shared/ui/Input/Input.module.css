@@ -30,8 +30,8 @@
     padding: var(--space-2) var(--space-3);
     box-shadow: var(--shadow-sm);
     transition:
-        border-color 0.2s ease-in-out,
-        box-shadow 0.2s ease-in-out;
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
 }
 
 .input::placeholder {

@@ -3,13 +3,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: all var(--transition-normal);
     cursor: pointer;
     border: 1px solid transparent;
     text-decoration: none;
     user-select: none;
     position: relative;
     overflow: hidden;
+    transition:
+        background-color var(--transition-normal),
+        box-shadow var(--transition-normal);
 }
 
 .button:disabled {
@@ -17,11 +19,6 @@
     color: var(--color-text-disabled);
     opacity: 0.5;
     cursor: not-allowed;
-}
-
-.button:focus-visible {
-    outline: 2px solid var(--color-primary-500);
-    outline-offset: 2px;
 }
 
 .xs {

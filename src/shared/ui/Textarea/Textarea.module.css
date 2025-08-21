@@ -43,8 +43,8 @@
     box-shadow: var(--shadow-sm);
     resize: none;
     transition:
-        border-color 0.2s ease-in-out,
-        box-shadow 0.2s ease-in-out;
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
 }
 
 .textarea::placeholder {

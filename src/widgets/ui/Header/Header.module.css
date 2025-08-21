@@ -21,6 +21,14 @@
 
 @media (min-width: 768px) {
     .header {
+        padding: var(--space-4) var(--space-6);
+        margin-bottom: var(--space-3);
+        border-bottom: none;
+    }
+}
+
+@media (min-width: 1152px) {
+    .header {
         padding: 0;
         margin-bottom: var(--space-8);
         border-bottom: none;

@@ -61,8 +61,7 @@
     --line-height-normal: 1.5;
     --line-height-relaxed: 1.75;
 
-    --breakpoint-tablet: 768px;
-    --breakpoint-desktop: 1024px;
+    --transition-normal: 0.2s ease-in-out;
 
     --shadow-sm: 0 1px 2px 0 rgb(16, 24, 40, 0.05);
     --shadow-primary: 0 0 0 4px #d3f8df;
