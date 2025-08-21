@@ -28,11 +28,13 @@ export const App = ({db, savedLetters}: AppProps) => {
                         />
                         <Route
                             path={AppRoutes.newApplication}
-                            element={<ApplicationPage />}
+                            element={<ApplicationPage key="new-application" />}
                         />
                         <Route
                             path={AppRoutes.application}
-                            element={<ApplicationPage />}
+                            element={
+                                <ApplicationPage key="existing-application" />
+                            }
                         />
                     </Routes>
                 </section>

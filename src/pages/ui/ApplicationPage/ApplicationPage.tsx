@@ -1,7 +1,7 @@
 import {memo, useCallback, useEffect, useRef, useState} from 'react'
 import {useNavigate, useParams} from 'react-router-dom'
 import {generateCoverLetter} from '~/shared/api'
-import {AppRoutes} from '~/shared/constants'
+import {AppRoutes, SCROLL_INTO_VIEW_DELAY} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
 import {useAppStore} from '~/shared/store'
 import type {ApplicationFormData} from '~/shared/types'
@@ -18,7 +18,6 @@ export const ApplicationPage = memo(() => {
         state.letters.find(letter => letter.id === id),
     )
     const [loading, setLoading] = useState(false)
-    const formRef = useRef<HTMLFormElement>(null)
     const letterRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
@@ -33,20 +32,8 @@ export const ApplicationPage = memo(() => {
                 behavior: 'smooth',
                 block: 'center',
             })
-        }, 500)
+        }, SCROLL_INTO_VIEW_DELAY)
     }, [])
-
-    const scrollToForm = useCallback(() => {
-        formRef.current?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-        })
-    }, [])
-
-    const onCreateNew = useCallback(() => {
-        formRef.current?.reset()
-        scrollToForm()
-    }, [scrollToForm])
 
     const onGenerate = useCallback(
         async (data: ApplicationFormData) => {
@@ -85,7 +72,6 @@ export const ApplicationPage = memo(() => {
         <div className={styles.container}>
             <div className={styles.content}>
                 <ApplicationForm
-                    ref={formRef}
                     className={styles.form}
                     letter={existingLetter}
                     onGenerate={onGenerate}
@@ -98,9 +84,7 @@ export const ApplicationPage = memo(() => {
                     letter={existingLetter}
                 />
             </div>
-            {existingLetter && (
-                <Banner className={styles.banner} onCreateNew={onCreateNew} />
-            )}
+            {existingLetter && <Banner className={styles.banner} />}
         </div>
     )
 })
