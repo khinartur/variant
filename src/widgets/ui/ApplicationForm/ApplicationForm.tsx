@@ -49,12 +49,14 @@ export const ApplicationForm = memo(
                     values: true,
                 },
                 callback: ({values}) => {
-                    updateFormDraft(values)
+                    if (!preview) {
+                        updateFormDraft(values)
+                    }
                 },
             })
 
             return () => unsubscribe()
-        }, [subscribe, updateFormDraft])
+        }, [subscribe, updateFormDraft, preview])
 
         return (
             <form
@@ -135,6 +137,7 @@ export const ApplicationForm = memo(
                         limit={APPLICATION_FORM_DETAILS_LIMIT}
                         disabled={processing}
                         error={!!errors.details}
+                        defaultValue={draft?.details}
                         {...register('details', {
                             required: true,
                             maxLength: {

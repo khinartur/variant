@@ -3,7 +3,7 @@ import {useMemo, useState} from 'react'
 import styles from './Textarea.module.css'
 
 interface TextareaProps
-    extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> {
+    extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
     defaultValue?: string
     label?: string
     error?: boolean
@@ -45,7 +45,6 @@ export const Textarea: React.FC<TextareaProps> = ({
                 isError && styles.error,
             )}
             id={textareaId}
-            value={value}
             onChange={handleChange}
             {...props}
         />
