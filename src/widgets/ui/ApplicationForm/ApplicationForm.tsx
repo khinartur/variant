@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import {memo, useEffect} from 'react'
+import {forwardRef, memo, useEffect} from 'react'
 import {useForm} from 'react-hook-form'
 import {
     APPLICATION_FORM_DETAILS_LIMIT,
@@ -21,59 +21,79 @@ interface ApplicationFormProps
 }
 
 export const ApplicationForm = memo(
-    ({
-        className,
-        letter,
-        onGenerate,
-        processing,
-        ...props
-    }: ApplicationFormProps) => {
-        const isMobile = useIsMobile()
-        const {formDraft, updateFormDraft} = useAppStore()
-        const preview = !!letter
-        const draft = letter?.formData || formDraft
+    forwardRef<HTMLFormElement, ApplicationFormProps>(
+        ({className, letter, onGenerate, processing, ...props}, ref) => {
+            const isMobile = useIsMobile()
+            const {formDraft, updateFormDraft} = useAppStore()
+            const preview = !!letter
+            const draft = letter?.formData || formDraft
 
-        const {
-            register,
-            subscribe,
-            handleSubmit,
-            formState: {errors, isValid},
-        } = useForm<ApplicationFormData>({
-            mode: 'onChange',
-            defaultValues: draft ?? DEFAULT_NEW_APPLICATION_FORM_VALUES,
-        })
-
-        useEffect(() => {
-            const unsubscribe = subscribe({
-                formState: {
-                    values: true,
-                },
-                callback: ({values}) => {
-                    if (!preview) {
-                        updateFormDraft(values)
-                    }
-                },
+            const {
+                register,
+                subscribe,
+                handleSubmit,
+                formState: {errors, isValid},
+            } = useForm<ApplicationFormData>({
+                mode: 'onChange',
+                defaultValues: draft ?? DEFAULT_NEW_APPLICATION_FORM_VALUES,
             })
 
-            return () => unsubscribe()
-        }, [subscribe, updateFormDraft, preview])
+            useEffect(() => {
+                const unsubscribe = subscribe({
+                    formState: {
+                        values: true,
+                    },
+                    callback: ({values}) => {
+                        if (!preview) {
+                            updateFormDraft(values)
+                        }
+                    },
+                })
 
-        return (
-            <form
-                onSubmit={handleSubmit(onGenerate)}
-                className={clsx(styles.form, className)}
-                {...props}
-            >
-                {preview && draft && (
-                    <div className={styles.header}>
-                        <Text variant="h1" className={styles.truncate}>
-                            {buildFormTitle(draft)}
-                        </Text>
-                    </div>
-                )}
-                <div className={styles.content}>
-                    {isMobile ? (
-                        <>
+                return () => unsubscribe()
+            }, [subscribe, updateFormDraft, preview])
+
+            return (
+                <form
+                    ref={ref}
+                    onSubmit={handleSubmit(onGenerate)}
+                    className={clsx(styles.form, className)}
+                    {...props}
+                >
+                    {preview && draft && (
+                        <div className={styles.header}>
+                            <Text variant="h1" className={styles.truncate}>
+                                {buildFormTitle(draft)}
+                            </Text>
+                        </div>
+                    )}
+                    <div className={styles.content}>
+                        {isMobile ? (
+                            <>
+                                <div className={styles.line}>
+                                    <Input
+                                        label="Job title"
+                                        placeholder="Product Manager"
+                                        disabled={processing}
+                                        error={!!errors.jobTitle}
+                                        {...register('jobTitle', {
+                                            required: true,
+                                        })}
+                                    />
+                                </div>
+                                <div className={styles.line}>
+                                    <Input
+                                        label="Company"
+                                        placeholder="Apple"
+                                        disabled={processing}
+                                        error={!!errors.company}
+                                        {...register('company', {
+                                            required: true,
+                                        })}
+                                    />
+                                </div>
+                            </>
+                        ) : (
                             <div className={styles.line}>
                                 <Input
                                     label="Job title"
@@ -84,8 +104,6 @@ export const ApplicationForm = memo(
                                         required: true,
                                     })}
                                 />
-                            </div>
-                            <div className={styles.line}>
                                 <Input
                                     label="Company"
                                     placeholder="Apple"
@@ -96,79 +114,58 @@ export const ApplicationForm = memo(
                                     })}
                                 />
                             </div>
-                        </>
-                    ) : (
+                        )}
                         <div className={styles.line}>
                             <Input
-                                label="Job title"
-                                placeholder="Product Manager"
+                                label="I am good at..."
+                                placeholder="HTML, CSS and doing things in time"
                                 disabled={processing}
-                                error={!!errors.jobTitle}
-                                {...register('jobTitle', {
-                                    required: true,
-                                })}
-                            />
-                            <Input
-                                label="Company"
-                                placeholder="Apple"
-                                disabled={processing}
-                                error={!!errors.company}
-                                {...register('company', {
+                                error={!!errors.skills}
+                                {...register('skills', {
                                     required: true,
                                 })}
                             />
                         </div>
-                    )}
-                    <div className={styles.line}>
-                        <Input
-                            label="I am good at..."
-                            placeholder="HTML, CSS and doing things in time"
+                        <Textarea
+                            className={styles.textarea}
+                            label="Additional details"
+                            placeholder="Describe why you are a great fit or paste your bio"
+                            limit={APPLICATION_FORM_DETAILS_LIMIT}
                             disabled={processing}
-                            error={!!errors.skills}
-                            {...register('skills', {
+                            error={!!errors.details}
+                            defaultValue={draft?.details}
+                            {...register('details', {
                                 required: true,
+                                maxLength: {
+                                    value: APPLICATION_FORM_DETAILS_LIMIT,
+                                    message: `Additional details cannot exceed ${APPLICATION_FORM_DETAILS_LIMIT} characters`,
+                                },
                             })}
                         />
                     </div>
-                    <Textarea
-                        className={styles.textarea}
-                        label="Additional details"
-                        placeholder="Describe why you are a great fit or paste your bio"
-                        limit={APPLICATION_FORM_DETAILS_LIMIT}
-                        disabled={processing}
-                        error={!!errors.details}
-                        defaultValue={draft?.details}
-                        {...register('details', {
-                            required: true,
-                            maxLength: {
-                                value: APPLICATION_FORM_DETAILS_LIMIT,
-                                message: `Additional details cannot exceed ${APPLICATION_FORM_DETAILS_LIMIT} characters`,
-                            },
-                        })}
-                    />
-                </div>
-                {preview ? (
-                    <Button
-                        type="submit"
-                        variant="outline"
-                        size={isMobile ? 'md' : 'lg'}
-                        iconLeft={<IconRepeat />}
-                        disabled={!isValid}
-                        loading={processing}
-                    >
-                        Try Again
-                    </Button>
-                ) : (
-                    <Button
-                        type="submit"
-                        size={isMobile ? 'md' : 'lg'}
-                        loading={processing}
-                        disabled={!isValid}
-                    >
-                        Generate Now
-                    </Button>
-                )}
-            </form>
-        )
-    },
+                    {preview ? (
+                        <Button
+                            type="submit"
+                            variant="outline"
+                            size={isMobile ? 'md' : 'lg'}
+                            iconLeft={<IconRepeat />}
+                            disabled={!isValid}
+                            loading={processing}
+                        >
+                            Try Again
+                        </Button>
+                    ) : (
+                        <Button
+                            type="submit"
+                            size={isMobile ? 'md' : 'lg'}
+                            loading={processing}
+                            disabled={!isValid}
+                        >
+                            Generate Now
+                        </Button>
+                    )}
+                </form>
+            )
+        },
+    ),
 )

@@ -8,46 +8,51 @@ import {useAppStore} from '~/shared/store'
 import {Button, Progress, Text} from '~/shared/ui'
 import styles from './Banner.module.css'
 
-interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {
+    onCreateNew?: () => void
+}
 
-export const Banner = memo(({className, ...props}: BannerProps) => {
-    const isMobile = useIsMobile()
-    const navigate = useNavigate()
-    const {letters} = useAppStore()
-    const progress = letters.length
+export const Banner = memo(
+    ({className, onCreateNew, ...props}: BannerProps) => {
+        const isMobile = useIsMobile()
+        const navigate = useNavigate()
+        const {letters} = useAppStore()
+        const progress = letters.length
 
-    const onCreateClick = useCallback(() => {
-        navigate(AppRoutes.newApplication)
-    }, [navigate])
+        const onCreateClick = useCallback(() => {
+            onCreateNew?.()
+            navigate(AppRoutes.newApplication)
+        }, [onCreateNew, navigate])
 
-    if (progress >= APPLICATIONS_PROGRESS_STEPS) {
-        return null
-    }
+        if (progress >= APPLICATIONS_PROGRESS_STEPS) {
+            return null
+        }
 
-    return (
-        <div className={clsx(styles.banner, className)} {...props}>
-            <div className={styles.bannerContent}>
-                <Text variant="h2" size={isMobile ? '2xl' : '4xl'}>
-                    Hit your goal
-                </Text>
-                <Text color="secondary" size={isMobile ? 'sm' : 'lg'}>
-                    Generate and send out couple more job applications today to
-                    get hired faster
-                </Text>
-                <Button
-                    size={isMobile ? 'md' : 'lg'}
-                    iconLeft={<IconPlus width={24} height={24} />}
-                    onClick={onCreateClick}
-                >
-                    Create New
-                </Button>
+        return (
+            <div className={clsx(styles.banner, className)} {...props}>
+                <div className={styles.bannerContent}>
+                    <Text variant="h2" size={isMobile ? '2xl' : '4xl'}>
+                        Hit your goal
+                    </Text>
+                    <Text color="secondary" size={isMobile ? 'sm' : 'lg'}>
+                        Generate and send out couple more job applications today
+                        to get hired faster
+                    </Text>
+                    <Button
+                        size={isMobile ? 'md' : 'lg'}
+                        iconLeft={<IconPlus width={24} height={24} />}
+                        onClick={onCreateClick}
+                    >
+                        Create New
+                    </Button>
+                </div>
+                <div className={styles.bannerFooter}>
+                    <Progress progress={progress} short={isMobile} />
+                    <Text color="secondary" size={isMobile ? 'sm' : 'lg'}>
+                        {progress} out of {APPLICATIONS_PROGRESS_STEPS}
+                    </Text>
+                </div>
             </div>
-            <div className={styles.bannerFooter}>
-                <Progress progress={progress} short={isMobile} />
-                <Text color="secondary" size={isMobile ? 'sm' : 'lg'}>
-                    {progress} out of {APPLICATIONS_PROGRESS_STEPS}
-                </Text>
-            </div>
-        </div>
-    )
-})
+        )
+    },
+)
