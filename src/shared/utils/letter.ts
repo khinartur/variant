@@ -9,8 +9,7 @@ export const generateTemplateLetter = (
 ): Letter => {
     const {company, jobTitle, skills, details} = formData
 
-    const content = `
-Dear ${company} Team,
+    const content = `Dear ${company} Team,
 
 I am writing to express my interest in the ${jobTitle} position.
 

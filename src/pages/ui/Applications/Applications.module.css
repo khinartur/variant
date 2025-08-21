@@ -10,5 +10,11 @@
 }
 
 .banner {
-    margin-top: var(--space-12);
+    margin-top: var(--space-6);
+}
+
+@media (min-width: 768px) {
+    .banner {
+        margin-top: var(--space-12);
+    }
 }

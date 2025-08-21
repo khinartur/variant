@@ -23,7 +23,7 @@ export const Header = () => {
             <Logo short={isMobile} />
             <div className={styles.right}>
                 <div className={styles.progress}>
-                    <Text color="secondary" size="lg">
+                    <Text color="secondary" size={isMobile ? 'sm' : 'lg'}>
                         {isMobile
                             ? `${progress}/${APPLICATIONS_PROGRESS_STEPS} generated`
                             : `${progress}/${APPLICATIONS_PROGRESS_STEPS} applications generated`}

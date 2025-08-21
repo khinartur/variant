@@ -9,20 +9,22 @@ export const App = () => {
         <BrowserRouter>
             <main className={styles.app}>
                 <Header />
-                <Routes>
-                    <Route
-                        path={AppRoutes.applications}
-                        element={<Applications />}
-                    />
-                    <Route
-                        path={AppRoutes.newApplication}
-                        element={<ApplicationPage />}
-                    />
-                    <Route
-                        path={AppRoutes.application}
-                        element={<ApplicationPage />}
-                    />
-                </Routes>
+                <section className={styles.content}>
+                    <Routes>
+                        <Route
+                            path={AppRoutes.applications}
+                            element={<Applications />}
+                        />
+                        <Route
+                            path={AppRoutes.newApplication}
+                            element={<ApplicationPage />}
+                        />
+                        <Route
+                            path={AppRoutes.application}
+                            element={<ApplicationPage />}
+                        />
+                    </Routes>
+                </section>
             </main>
         </BrowserRouter>
     )

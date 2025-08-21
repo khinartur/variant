@@ -128,6 +128,7 @@ export const ApplicationForm = ({
                     />
                 </div>
                 <Textarea
+                    className={styles.textarea}
                     label="Additional details"
                     placeholder="Describe why you are a great fit or paste your bio"
                     limit={APPLICATION_FORM_DETAILS_LIMIT}
