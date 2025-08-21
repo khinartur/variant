@@ -150,6 +150,8 @@ export const ApplicationForm = memo(
                         variant="outline"
                         size={isMobile ? 'md' : 'lg'}
                         iconLeft={<IconRepeat />}
+                        disabled={!isValid}
+                        loading={processing}
                     >
                         Try Again
                     </Button>
