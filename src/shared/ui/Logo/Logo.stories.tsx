@@ -1,4 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/react-vite'
+import {MemoryRouter} from 'react-router-dom'
+import {AppRoutes} from '~/shared/constants'
 import {Text} from '../Text'
 import {Logo} from './Logo'
 
@@ -47,4 +49,11 @@ export const Variants: Story = {
             </div>
         </div>
     ),
+    decorators: [
+        Story => (
+            <MemoryRouter initialEntries={[AppRoutes.applications]}>
+                <Story />
+            </MemoryRouter>
+        ),
+    ],
 }

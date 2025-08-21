@@ -3,4 +3,5 @@
     gap: var(--space-3);
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
