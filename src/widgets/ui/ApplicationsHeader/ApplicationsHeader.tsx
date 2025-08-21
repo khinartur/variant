@@ -1,4 +1,4 @@
-import {useCallback} from 'react'
+import {memo, useCallback} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {AppRoutes} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
@@ -6,7 +6,7 @@ import {IconPlus} from '~/shared/icons'
 import {Button, Text} from '~/shared/ui'
 import styles from './ApplicationsHeader.module.css'
 
-export const ApplicationsHeader = () => {
+export const ApplicationsHeader = memo(() => {
     const isMobile = useIsMobile()
     const navigate = useNavigate()
 
@@ -24,4 +24,4 @@ export const ApplicationsHeader = () => {
             </Button>
         </div>
     )
-}
+})

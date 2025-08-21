@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react'
+import {memo, useCallback, useEffect, useState} from 'react'
 import {useNavigate, useParams} from 'react-router-dom'
 import {AppRoutes} from '~/shared/constants'
 import {useAppStore} from '~/shared/store'
@@ -8,7 +8,7 @@ import {generateTemplateLetter} from '~/shared/utils/letter'
 import {ApplicationForm, Banner, Letter} from '~/widgets'
 import styles from './ApplicationPage.module.css'
 
-export const ApplicationPage = () => {
+export const ApplicationPage = memo(() => {
     const {id} = useParams<{id: string}>()
     const navigate = useNavigate()
     const {addLetter} = useAppStore()
@@ -55,4 +55,4 @@ export const ApplicationPage = () => {
             {existingLetter && <Banner className={styles.banner} />}
         </div>
     )
-}
+})

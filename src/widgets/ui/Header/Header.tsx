@@ -1,4 +1,4 @@
-import {useCallback} from 'react'
+import {memo, useCallback} from 'react'
 import {useMatch, useNavigate} from 'react-router-dom'
 import {APPLICATIONS_PROGRESS_STEPS, AppRoutes} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
@@ -7,7 +7,7 @@ import {useAppStore} from '~/shared/store'
 import {Button, Logo, Progress, Text} from '~/shared/ui'
 import styles from './Header.module.css'
 
-export const Header = () => {
+export const Header = memo(() => {
     const isMobile = useIsMobile()
     const navigate = useNavigate()
     const isHomePage = useMatch(AppRoutes.applications)
@@ -41,4 +41,4 @@ export const Header = () => {
             </div>
         </div>
     )
-}
+})

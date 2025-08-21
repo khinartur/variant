@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import {memo} from 'react'
 import styles from './Text.module.css'
 
 type TextVariant = 'h1' | 'h2' | 'plain'
@@ -22,34 +23,36 @@ interface TextProps extends React.HTMLAttributes<HTMLElement> {
     as?: TextElement
 }
 
-export const Text: React.FC<TextProps> = ({
-    children,
-    variant = 'plain',
-    color = 'primary',
-    size,
-    as,
-    className,
-    ...props
-}) => {
-    const getElementType = (): TextElement => {
-        if (as) return as
-        if (variant === 'h1') return 'h1'
-        if (variant === 'h2') return 'h2'
-        return 'span'
-    }
-
-    const Element = getElementType()
-    const textClasses = clsx(
-        styles.text,
-        styles[variant],
-        styles[color],
-        size && styles[`size-${size}`],
+export const Text: React.FC<TextProps> = memo(
+    ({
+        children,
+        variant = 'plain',
+        color = 'primary',
+        size,
+        as,
         className,
-    )
+        ...props
+    }) => {
+        const getElementType = (): TextElement => {
+            if (as) return as
+            if (variant === 'h1') return 'h1'
+            if (variant === 'h2') return 'h2'
+            return 'span'
+        }
 
-    return (
-        <Element className={textClasses} {...props}>
-            {children}
-        </Element>
-    )
-}
+        const Element = getElementType()
+        const textClasses = clsx(
+            styles.text,
+            styles[variant],
+            styles[color],
+            size && styles[`size-${size}`],
+            className,
+        )
+
+        return (
+            <Element className={textClasses} {...props}>
+                {children}
+            </Element>
+        )
+    },
+)

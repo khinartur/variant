@@ -1,5 +1,5 @@
 import clsx from 'clsx'
-import {useCallback} from 'react'
+import {memo, useCallback} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {APPLICATIONS_PROGRESS_STEPS, AppRoutes} from '~/shared/constants'
 import {useIsMobile} from '~/shared/hooks'
@@ -10,7 +10,7 @@ import styles from './Banner.module.css'
 
 interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {}
 
-export const Banner = ({className, ...props}: BannerProps) => {
+export const Banner = memo(({className, ...props}: BannerProps) => {
     const isMobile = useIsMobile()
     const navigate = useNavigate()
     const {letters} = useAppStore()
@@ -50,4 +50,4 @@ export const Banner = ({className, ...props}: BannerProps) => {
             </div>
         </div>
     )
-}
+})
